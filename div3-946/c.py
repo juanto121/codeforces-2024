@@ -22,19 +22,14 @@ for tc in range(t):
     res = 0
     for pair in pairs.keys():
         subres = 0
-        pk = list(pairs[pair].keys())
+        pk = list(pairs[pair].keys()) # keys of a pair {a: 1, b: 2, c: 3} -> [a, b, c]
         l = len(pk)
         if l > 1:
-            for i in range(l):
-                for j in range(i + 1, l):
-                    subres += pairs[pair][pk[i]] * pairs[pair][pk[j]]
-        res += subres
+            keystosum = [pairs[pair][i] for i in pk]
+            # print(keystosum)
+            totalsumkeys = sum(keystosum)
+            for key in pairs[pair]:
+                subres += pairs[pair][key] * (totalsumkeys - pairs[pair][key])
+            subres /= 2
+        res += int(subres)
     print(res)
-            
-    
-
-
-
-            
-            
-            
